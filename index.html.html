@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔊 Simple Text Reader</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #ffffff;
+            color: #0072ff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #d0eaff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔊 Simple Text Reader</h1>
+
+    <input type="text" id="textInput" placeholder="Type English text..." onkeydown="handleKey(event)" />
+
+    <button onclick="speakText()">Speak</button>
+
+    <footer>Works on Android & iPhone | HTML5 + JS</footer>
+
+    <script>
+        function speakText() {
+            const text = document.getElementById('textInput').value.trim();
+            if (!text) {
+                alert("Please enter English text.");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            speechSynthesis.speak(utterance);
+        }
+
+        function handleKey(event) {
+            if (event.key === "Enter") {
+                speakText();
+            }
+        }
+    </script>
+</body>
+
+</html>
